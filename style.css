@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 2rem;
+    background: #f9f9f9;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #222;
+  }
+  
+  #view-container {
+    margin-top: 2rem;
+  }
+  
+  .controls {
+    margin-bottom: 1rem;
+  }
+  
+  .controls select {
+    margin-left: 0.5rem;
+    margin-right: 1.5rem;
+    padding: 0.3rem;
+    font-size: 1rem;
+  }
+  
+  .tooltip {
+    position: absolute;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.6rem;
+    border-radius: 6px;
+    pointer-events: none;
+    font-size: 0.9rem;
+    font-family: sans-serif;
+  }
+  
+  .note {
+    margin-top: 2rem;
+    color: #444;
+    font-style: italic;
+  }
+  
+  /* Navigation bar using <nav><a data-view="..."> links */
+  nav {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  nav a {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: #0056d2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  nav a:hover {
+    background-color: #003fa6;
+  }
+  
+  nav a.active {
+    background-color: #002e7a;
+  }
+  

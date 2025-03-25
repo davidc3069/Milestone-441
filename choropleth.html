@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Choropleth Map</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+    <div id="choropleth-container">
+      <h2 id="map-title" class="map-title">Loading...</h2>
+      <div class="controls">
+        <label for="yearSelect">Year:</label>
+        <select id="yearSelect"></select>
+        <label for="causeSelect">Cause of Death:</label>
+        <select id="causeSelect"></select>
+      </div>
+      <svg id="map" width="960" height="600"></svg>
+    </div>
+
+    <script type="module" src="choropleth.js"></script>
+  </body>
+</html>
