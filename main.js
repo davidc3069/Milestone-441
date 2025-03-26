@@ -1,4 +1,4 @@
-const views = ["choropleth", "scatter", "linechart"];
+const views = ["choropleth", "scatter", "linechart", "heart-disease", "alzheimers", "cancer"];
 let currentIndex = 0;
 
 function loadRoute(viewName) {
@@ -22,6 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
       loadRoute(view);
     });
   });
+
+  document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", function(event) {
+        event.preventDefault();
+        document.getElementById("view-frame").src = this.getAttribute("data-view") + ".html";
+    });
+});
 
   window.addEventListener("keydown", e => {
     if (e.key === "ArrowRight") {
