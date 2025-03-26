@@ -1,4 +1,6 @@
-let currentRoute = null;
+
+const views = ["choropleth", "scatter", "linechart", "heart-disease", "alzheimers", "cancer"];
+let currentIndex = 0;
 
 function loadRoute(route) {
   const routes = {
@@ -63,6 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
       else console.error("Missing data-view attribute.");
     });
   });
+
+  document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", function(event) {
+        event.preventDefault();
+        document.getElementById("view-frame").src = this.getAttribute("data-view") + ".html";
+    });
+});
 
   const views = ["choropleth", "kidney", "accidents"];
   let currentIndex = 0;
