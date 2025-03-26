@@ -1,23 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Choropleth Map</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-  </head>
-  <body>
-    <div id="choropleth-container">
-      <h2 id="map-title" class="map-title">Loading...</h2>
-      <div class="controls">
-        <label for="yearSelect">Year:</label>
-        <select id="yearSelect"></select>
-        <label for="causeSelect">Cause of Death:</label>
-        <select id="causeSelect"></select>
-      </div>
-      <svg id="map" width="960" height="600"></svg>
-    </div>
+<div class="container">
+  <div class="poem-box">
+    <p>
+      <em>
+        
+To my mirage of tomorrow, </br>
+The numbers are in.</br>
+</br>
+We clung to the promise of a new millennium,</br>
+brushed away the brittle dust of the past,</br>
+smiled wide, teeth bared against the unknown,</br>
+waved our history goodbye, and our futures—hello.</br>
+</br>
+Somewhere outside, someone leaves a note.</br>
+Somewhere outside, a phone rings into silence.</br>
+A soul, somewhere out there, can no longer pretend.</br>
+But alas, we’ll focus on tomorrow.</br>
+</br>
+But what does tomorrow really promise?</br>
+Is she softer, sweeter,</br>
+Does she glimmer in the early light like fool’s gold?</br>
+</br>
+Does she hush the mother in the ward,</br>
+rocking prayers between trembling fingers,</br>
+watching, waiting, whispering spells of survival?</br>
+</br>
+Does she quiet the humming of the machines,</br>
+or does she feed them?</br>
+Does she dispense the poison, or does she supply it?</br>
+</br>
+Tomorrow, the stock price rises.</br>
+</br>
+But don’t shy away from this horror now.</br>
+We’ve only just begun.</br>
+      </em>
+    </p>
+  </div>
 
-    <script type="module" src="choropleth.js"></script>
-  </body>
-</html>
+  <div class="vis-box">
+    <h2 id="choropleth-title">All causes Deaths in 1999</h2>
+    <div class="controls">
+      <label for="yearSelect">Year:</label>
+      <select id="yearSelect"></select>
+      <label for="causeSelect">Cause of Death:</label>
+      <select id="causeSelect"></select>
+    </div>
+    <svg id="map" width="960" height="600"></svg>
+  </div>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="choropleth.js"></script>

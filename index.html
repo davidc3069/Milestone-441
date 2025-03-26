@@ -2,31 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>US Mortality Data Visualizations</title>
+    <title>US Mortality Visualizations</title>
     <link rel="stylesheet" href="style.css" />
+    <script defer src="main.js"></script>
   </head>
   <body>
     <h1>US Mortality Data Visualizations</h1>
 
     <nav>
       <a href="#" data-view="choropleth">Choropleth Map</a>
-      <a href="#" data-view="scatter">Scatter Plot</a>
-      <a href="#" data-view="linechart">Line Chart</a>
+      <a href="#" data-view="kidney">Kidney Disease</a>
+      <a href="#" data-view="accidents">Accidents</a>
     </nav>
 
-    <p class="note">
-      Use ← and → arrow keys or click a view to switch visualizations.
-    </p>
+    <p class="note">Use ← and → arrow keys or click a tab to switch views.</p>
 
-    <iframe
-      id="view-frame"
-      src="choropleth.html"
-      frameborder="0"
-      width="100%"
-      height="700px"
-    ></iframe>
-
-    <script src="main.js"></script>
+    <div id="view-container"></div>
   </body>
 </html>
