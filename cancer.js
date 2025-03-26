@@ -18,11 +18,10 @@ d3.csv("data.csv").then(function(data) {
     }));
 
     const margin = { top: 50, right: 30, bottom: 100, left: 120 },
-          width = 1200 - margin.left - margin.right,
-          height = 800 - margin.top - margin.bottom;
+          width = 960 - margin.left - margin.right,
+          height = 500 - margin.top - margin.bottom;
 
-    const svg = d3.select("#heatmap-container")
-        .append("svg")
+    const svg = d3.select("#cancer-chart")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -71,3 +70,4 @@ d3.csv("data.csv").then(function(data) {
         .style("font-size", "18px")
         .text("Cancer Mortality Heatmap (Deaths by State & Year)");
 });
+

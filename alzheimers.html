@@ -1,19 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Alzheimer's Disease Mortality</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h2>Alzheimer's Disease Mortality Visualization</h2>
+<div class="view-container">
+  <div class="poem-box">
+    <p>
+      <em>
+        A woman stares at a photograph.<br />
+        A daughter. A husband. A house she built.<br />
+        The walls are warm, the past untouched—<br />
+        until her mind becomes a house fire,<br />
+        burning through the names, the faces, the years.<br />
+        She is here. She is already gone.<br />
+        Tomorrow, her breath will slip into the dark.<br />
+        Tomorrow, the ledger will forget her name too.
+      </em>
+    </p>
+  </div>
 
-    <label for="yearDropdown">Select Year:</label>
-    <select id="yearDropdown"></select>
-
+  <div class="vis-box">
+    <div style="margin-bottom: 1rem">
+      <label for="yearDropdown"><strong>Select Year:</strong></label>
+      <select id="yearDropdown"></select>
+    </div>
     <div id="network-container"></div>
+  </div>
+</div>
 
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="alzheimers.js"></script>
-</body>
-</html>
+<script src="alzheimers.js"></script>

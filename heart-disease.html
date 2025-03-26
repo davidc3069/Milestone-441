@@ -1,22 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Heart Disease Mortality</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h2>Heart Disease Mortality Over Time</h2>
+<div class="view-container">
+  <div class="poem-box">
+    <p>
+      <em>
+        Tonight, a father grips his chest in the dark.<br />
+        The walls press inward, the air thick with echoes.<br />
+        His body, a traitor, turns against him—<br />
+        his veins choke, his heart stutters, his breath folds.<br />
+        Death slithers through his lineage like an inheritance.<br />
+        It has waited patiently.<br />
+        He has outrun it for years. No longer.<br />
+        The ambulance is a siren in the distance,<br />
+        a promise that will not be kept.<br />
+        His pain splinters through him like fractured glass.<br />
+        Tomorrow, he won’t feel a thing.
+      </em>
+    </p>
+    <div class="controls">
+      <label for="stateDropdown">State:</label>
+      <select id="stateDropdown"></select>
+    </div>
+  </div>
 
-    
-    <select id="stateDropdown">
-        <option value="All">All States</option>
-    </select>
+  <div class="vis-box" id="line-chart-container"></div>
+</div>
 
-    
-    <div id="line-chart-container"></div>
-
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="heart-disease.js"></script>
-</body>
-</html>
+<script src="heart-disease.js"></script>

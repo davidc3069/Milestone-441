@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Cancer Mortality Heatmap</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h2>Cancer Mortality Heatmap by State and Year</h2>
-
-    <div id="heatmap-container"></div>
-
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cancer Visualization</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+    <div class="view-container">
+      <div class="poem-box">
+        <p>
+          <em>
+            Twenty years pass.<br />
+            The numbers climb.<br />
+            The stock price soars.<br /><br />
+            Who decides who gets to fight?<br />
+            Who decides who gets to die?<br /><br />
+            Somewhere, someone exhales for the last time.<br />
+            Somewhere, the machine hums on.<br />
+            Somewhere, someone whispers a name,<br />
+            a prayer pressed between cracking lips.<br /><br />
+            They call for mercy,<br />
+            their throat retches as they scream for tomorrow,<br />
+            until the lights flicker, the wires disconnect,<br />
+            and we realize—<br /><br />
+            The numbers will do just fine, tomorrow.
+          </em>
+        </p>
+      </div>
+
+      <div class="vis-box">
+        <svg id="cancer-chart" width="960" height="500"></svg>
+      </div>
+    </div>
+
     <script src="cancer.js"></script>
-</body>
+  </body>
 </html>
