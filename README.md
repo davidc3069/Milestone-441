@@ -31,11 +31,14 @@ The visualizations are implemented using **D3.js** and clearly illustrate mortal
   **1. Cloning the repository:**
 git clone (https://github.com/davidc3069/Milestone-441.git)
 cd Milestone-441
+
+
   2. Start a local server:
 
 Using Python:
 python3 -m http.server 8000
 Alternatively, using VSCode’s Live Server or another local server extension.
+
   3. Access visualizations:
 
 Open a browser and navigate to:
