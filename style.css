@@ -1,83 +1,161 @@
+/* 1. Fonts & Global Styling */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@400;600&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 2rem;
-    background: #f5f7fa;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  nav {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-  
-  nav a {
-    padding: 0.6rem 1.2rem;
-    background-color: #0056d2;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-  
-  nav a:hover {
-    background-color: #003fa6;
-  }
-  
-  .note {
-    text-align: center;
-    font-style: italic;
-    color: #444;
-    margin-bottom: 1.5rem;
-  }
-  
-  .container {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-  }
-  
-  .view-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-  
-  .poem-box {
-    background-color: #dff0ff;
-    padding: 1rem;
-    border-left: 5px solid #007bff;
-    max-width: 300px;
-    font-style: italic;
-    font-size: 0.95rem;
-    color: #111;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-  }
-  
-  .vis-box {
-    flex: 1;
-  }
-  
-  .controls {
-    margin: 1rem 0;
-  }
-  
-  .tooltip {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.75);
-    color: white;
-    padding: 6px 10px;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    pointer-events: none;
-  }
+  margin: 0;
+  padding: 0;
+  background: black;
+  font-family: 'Playfair Display', serif;
+  color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 2. Background Stars */
+#background-stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+/* 3. Sidebar Nav */
+.sidebar {
+  position: fixed;
+  left: -180px;
+  top: 0;
+  height: 100%;
+  width: 180px;
+  background: rgba(0, 0, 0, 0.85);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  padding-top: 60px;
+  font-family: 'Inter', sans-serif;
+}
+
+.sidebar:hover {
+  left: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 12px 20px;
+  cursor: pointer;
+  color: #aaa;
+  transition: background 0.3s, color 0.3s;
+}
+
+.sidebar ul li:hover {
+  background: #333;
+  color: #fff;
+}
+
+/* 4. Main layout: two columns */
+#view-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  padding: 60px;
+  box-sizing: border-box;
+  align-items: start;
+}
+
+.left-panel {
+  text-align: left;
+  max-width: 600px;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  padding-right: 20px;
+}
+
+
+.left-panel .poem-box {
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+#choropleth-controls {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+#choropleth-controls label {
+  margin-right: 8px;
+}
+
+#choropleth-controls select {
+  margin-right: 12px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+  font-size: 1rem;
+}
+
+/* 6. Visualization (Right side) */
+#map {
+  width: 100%;
+  height: 80vh;
+  display: block;
+  border: none;
+}
+
+/* 7. Tooltip */
+.tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+/* Optional: Fade-in poem */
+.poem-box p {
+  animation: fadeIn 2s ease-in;
+  font-size: inherit;
+}
+
+input[type="range"] {
+  width: 200px;
+  accent-color: #e0e0e0;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+#choropleth-controls span {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+
+
+
+
+
   
   
     

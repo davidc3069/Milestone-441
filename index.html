@@ -2,24 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>US Mortality Visualizations</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>The Economy of Death</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <script defer src="main.js"></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <h1>US Mortality Data Visualizations</h1>
 
-    <nav>
-      <a href="#" data-view="choropleth">Choropleth Map</a>
-      <a href="#" data-view="kidney">Kidney Disease</a>
-      <a href="#" data-view="accidents">Accidents</a>
-      <a href="#" data-view="heart-disease">Heart Disease Trend</a>
-      <a href="#" data-view="alzheimers">Alzheimer's Disease Trend</a>
-      <a href="#" data-view="cancer">Cancer Trend</a>
+  <body>
+    <!-- 🌌 Full-page star background -->
+    <svg id="background-stars"></svg>
+
+    <!-- 🛰️ Sidebar navigation -->
+    <nav class="sidebar">
+      <ul>
+        <li data-view="choropleth">Choropleth</li>
+        <li data-view="kidney">Kidney Disease</li>
+        <li data-view="accidents">Accidents</li>
+        <li data-view="heart-disease">Heart Disease</li>
+        <li data-view="alzheimers">Alzheimer's Disease</li>
+        <li data-view="cancer">Cancer</li>
+      </ul>
     </nav>
 
-    <p class="note">Use ← and → arrow keys or click a tab to switch views.</p>
-
+    <!-- 🌐 Dynamic view container -->
     <div id="view-container"></div>
   </body>
 </html>

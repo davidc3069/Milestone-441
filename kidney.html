@@ -1,32 +1,29 @@
-<div class="container">
-  <div class="poem-box">
-    <p>
-      <em>
-        And on our journey to this dystopian heaven,</br>
-does a son get to stay tethered to the machine</br>
-that breathes for him?</br>
-</br>
-Three times a week.</br>
-The repetition, the rhythm, the ritual of survival.</br>
-Consistency is key. Consistency is life.</br>
-</br>
-A donor is turned away.</br>
-A kidney is lost to the highest bidder.</br>
-But the numbers remain steady, fret not.</br>
-</br>
-Tomorrow, the ledger will not be noticed.</br>
+<div id="view-container">
+  <!-- Left Panel -->
+  <div class="left-panel">
+    <div class="poem-box">
+      <p>
+        <em>
+          And on our journey to this dystopian heaven,<br />
+          does a son get to stay tethered to the machine<br />
+          that breathes for him?<br /><br />
+          Three times a week.<br />
+          The repetition, the rhythm, the ritual of survival.<br />
+          Consistency is key. Consistency is life.<br /><br />
+          A donor is turned away.<br />
+          A kidney is lost to the highest bidder.<br />
+          But the numbers remain steady, fret not.<br /><br />
+          Tomorrow, the ledger will not be noticed.
+        </em>
+      </p>
+    </div>
 
-      </em>
-    </p>
+    <div id="choropleth-controls">
+      <label for="kidney-year">Year:</label>
+      <input type="range" id="kidney-year" min="1999" max="2019" value="1999" />
+      <span id="kidney-year-value">1999</span>
+    </div>
   </div>
 
-  <div class="vis-box">
-    <h2>Kidney Disease Deaths by State (Top 25)</h2>
-    <label for="kidney-year">Year:</label>
-    <select id="kidney-year"></select>
-    <svg id="kidney-chart" width="900" height="600"></svg>
-  </div>
+  <svg id="kidney-chart" width="900" height="600"></svg>
 </div>
-
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="kidney.js"></script>

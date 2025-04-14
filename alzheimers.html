@@ -1,26 +1,28 @@
-<div class="view-container">
-  <div class="poem-box">
-    <p>
-      <em>
-        A woman stares at a photograph.<br />
-        A daughter. A husband. A house she built.<br />
-        The walls are warm, the past untouched—<br />
-        until her mind becomes a house fire,<br />
-        burning through the names, the faces, the years.<br />
-        She is here. She is already gone.<br />
-        Tomorrow, her breath will slip into the dark.<br />
-        Tomorrow, the ledger will forget her name too.
-      </em>
-    </p>
-  </div>
-
-  <div class="vis-box">
-    <div style="margin-bottom: 1rem">
-      <label for="yearDropdown"><strong>Select Year:</strong></label>
-      <select id="yearDropdown"></select>
+<div id="view-container">
+  <!-- Left Panel -->
+  <div class="left-panel">
+    <div class="poem-box">
+      <p>
+        <em>
+          A woman stares at a photograph.<br />
+          A daughter. A husband. A house she built.<br />
+          The walls are warm, the past untouched—<br />
+          until her mind becomes a house fire,<br />
+          burning through the names, the faces, the years.<br />
+          She is here. She is already gone.<br />
+          Tomorrow, her breath will slip into the dark.<br />
+          Tomorrow, the ledger will forget her name too.
+        </em>
+      </p>
     </div>
-    <div id="network-container"></div>
-  </div>
-</div>
 
-<script src="alzheimers.js"></script>
+    <div id="choropleth-controls">
+      <label for="alz-year">Year:</label>
+      <input type="range" id="alz-year" min="1999" max="2019" value="1999" />
+      <span id="alz-year-value">1999</span>
+    </div>
+  </div>
+
+  <!-- Right Panel -->
+  <div id="network-container" class="right-panel"></div>
+</div>
