@@ -134,6 +134,9 @@
           const year = yearSlider.property("value");
           updateMap(year, causeSelect.property("value"));
         });
+
+        // ✅ Reveal the controls after transition
+        d3.select("#choropleth-controls").classed("hidden", false);
       });
     }
 
@@ -172,4 +175,3 @@
 
   tryRender();
 })();
-
