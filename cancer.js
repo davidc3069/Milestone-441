@@ -1,73 +1,177 @@
-// cancer.js (Heatmap excluding "United States")
-d3.csv("data.csv").then(function(data) {
+d3.csv("data.csv").then(data => {
     const causeName = "Cancer";
-
-    const states = Array.from(new Set(data.map(d => d.State)))
-                        .filter(state => state !== "United States")
-                        .sort();
-
-    const years = Array.from(new Set(data.map(d => +d.Year)))
-                        .sort((a, b) => a - b);
-
-    const filteredData = data.filter(d => d["Cause Name"] === causeName && d.State !== "United States");
-
-    const heatmapData = filteredData.map(d => ({
-        state: d.State,
-        year: +d.Year,
-        deaths: +d.Deaths
-    }));
-
-    const margin = { top: 50, right: 30, bottom: 100, left: 120 },
-          width = 960 - margin.left - margin.right,
-          height = 500 - margin.top - margin.bottom;
-
+  
+    data = data.filter(d => d["Cause Name"] === causeName && d.State !== "United States");
+    data.forEach(d => {
+      d.Deaths = +d.Deaths;
+      d.Year = +d.Year;
+    });
+  
+    const years = [...new Set(data.map(d => d.Year))].sort((a, b) => a - b);
+  
     const svg = d3.select("#cancer-chart")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
-
-    const xScale = d3.scaleBand()
-        .range([0, width])
-        .domain(years)
-        .padding(0.05);
-
-    const yScale = d3.scaleBand()
-        .range([height, 0])
-        .domain(states)
-        .padding(0.05);
-
-    const colorScale = d3.scaleSequential()
-        .interpolator(d3.interpolateReds)
-        .domain([0, d3.max(heatmapData, d => d.deaths)]);
-
-    svg.selectAll("rect")
-        .data(heatmapData)
-        .enter()
-        .append("rect")
-        .attr("x", d => xScale(d.year))
-        .attr("y", d => yScale(d.state))
-        .attr("width", xScale.bandwidth())
-        .attr("height", yScale.bandwidth())
-        .style("fill", d => colorScale(d.deaths));
-
-    svg.append("g")
-        .attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(xScale).tickSize(0))
+      .attr("viewBox", `0 0 1200 850`)
+      .attr("preserveAspectRatio", "xMidYMid meet");
+  
+    const width = 1200;
+    const height = 850;
+  
+    const chart = svg.append("g")
+      .attr("transform", `translate(${width / 2}, ${height / 2 - 30})`);
+  
+    const color = d3.scaleSequential(d3.interpolateReds);
+    const radiusScale = d3.scaleSqrt().range([12, 90]);
+  
+    const tooltip = d3.select("body").append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0)
+      .style("position", "absolute")
+      .style("background", "#333")
+      .style("color", "#fff")
+      .style("padding", "8px")
+      .style("border-radius", "4px")
+      .style("pointer-events", "none");
+  
+    function drawLegend(colorScale, maxDeaths) {
+      svg.selectAll(".legend, .legend-axis, defs").remove();
+  
+      const defs = svg.append("defs");
+      const gradientId = "legend-gradient";
+  
+      const linearGradient = defs.append("linearGradient")
+        .attr("id", gradientId)
+        .attr("x1", "0%").attr("x2", "100%")
+        .attr("y1", "0%").attr("y2", "0%");
+  
+      const stops = d3.range(0, 1.01, 0.1).map(t => ({
+        offset: `${t * 100}%`,
+        color: colorScale(t * maxDeaths)
+      }));
+  
+      linearGradient.selectAll("stop")
+        .data(stops)
+        .enter().append("stop")
+        .attr("offset", d => d.offset)
+        .attr("stop-color", d => d.color);
+  
+      svg.append("rect")
+        .attr("class", "legend")
+        .attr("x", width / 2 - 150)
+        .attr("y", height - 50)
+        .attr("width", 300)
+        .attr("height", 15)
+        .style("fill", `url(#${gradientId})`);
+  
+      const legendScale = d3.scaleLinear()
+        .domain([0, maxDeaths])
+        .range([width / 2 - 150, width / 2 + 150]);
+  
+      const axis = d3.axisBottom(legendScale)
+        .ticks(5)
+        .tickFormat(d3.format(".0s"));
+  
+      svg.append("g")
+        .attr("class", "legend-axis")
+        .attr("transform", `translate(0, ${height - 35})`)
+        .call(axis)
         .selectAll("text")
-        .attr("transform", "translate(-10,0)rotate(-45)")
-        .style("text-anchor", "end");
-
-    svg.append("g")
-        .call(d3.axisLeft(yScale).tickSize(0))
-        .selectAll("text")
-        .style("text-anchor", "end");
-
-    svg.append("text")
+        .style("fill", "white")
+        .style("font-size", "12px");
+  
+      svg.append("text")
         .attr("x", width / 2)
-        .attr("y", -20)
+        .attr("y", height - 60)
         .attr("text-anchor", "middle")
-        .style("font-size", "18px")
-        .text("Cancer Mortality Heatmap (Deaths by State & Year)");
-});
-
+        .style("fill", "white")
+        .style("font-size", "14px")
+        .style("font-family", "Inter")
+        .text("Deaths Scale");
+    }
+  
+    function update(year) {
+      const yearData = data
+        .filter(d => d.Year === +year)
+        .sort((a, b) => d3.descending(a.Deaths, b.Deaths))
+        .slice(0, 25);
+  
+      const maxDeaths = d3.max(yearData, d => d.Deaths);
+      color.domain([0, maxDeaths]);
+      radiusScale.domain([0, maxDeaths]);
+  
+      const nodes = yearData.map(d => ({
+        ...d,
+        r: radiusScale(d.Deaths)
+      }));
+  
+      chart.selectAll("*").remove();
+      drawLegend(color, maxDeaths);
+  
+      const simulation = d3.forceSimulation(nodes)
+        .force("x", d3.forceX(0).strength(0.1))
+        .force("y", d3.forceY(0).strength(0.1))
+        .force("collide", d3.forceCollide(d => d.r + 5))
+        .stop();
+  
+      for (let i = 0; i < 300; i++) simulation.tick();
+  
+      chart.selectAll("circle")
+        .data(nodes)
+        .enter().append("circle")
+        .attr("cx", d => d.x)
+        .attr("cy", d => d.y)
+        .attr("r", d => d.r)
+        .attr("fill", d => color(d.Deaths))
+        .attr("stroke", "#000")
+        .attr("stroke-width", 0.7)
+        .on("mouseover", (event, d) => {
+          tooltip.transition().duration(200).style("opacity", 0.9);
+          tooltip.html(`<strong>${d.State}</strong><br/>Year: ${d.Year}<br/>Deaths: ${d.Deaths.toLocaleString()}`)
+            .style("left", `${event.pageX + 15}px`)
+            .style("top", `${event.pageY - 28}px`);
+        })
+        .on("mouseout", () => tooltip.transition().duration(300).style("opacity", 0));
+  
+      chart.selectAll("text")
+        .data(nodes)
+        .enter().append("text")
+        .attr("x", d => d.x)
+        .attr("y", d => d.y + 4)
+        .attr("text-anchor", "middle")
+        .style("fill", "white")
+        .style("font-size", "11px")
+        .style("pointer-events", "none")
+        .text(d => d.State);
+  
+      svg.select(".vis-title").remove();
+      svg.append("text")
+        .attr("class", "vis-title")
+        .attr("x", width / 2)
+        .attr("y", 40)
+        .attr("text-anchor", "middle")
+        .style("font-size", "20px")
+        .style("font-family", "'Playfair Display', serif")
+        .style("fill", "white")
+        .text(`Cancer Deaths by State – ${year}`);
+    }
+  
+    // Setup slider
+    const slider = d3.select("#cancer-year");
+    const label = d3.select("#cancer-year-value");
+  
+    slider
+      .attr("min", years[0])
+      .attr("max", years[years.length - 1])
+      .attr("value", years[0]);
+  
+    label.text(years[0]);
+    update(years[0]);
+  
+    slider.on("input", function () {
+      const selected = +this.value;
+      label.text(selected);
+      update(selected);
+    });
+  });
+  
+  
+  

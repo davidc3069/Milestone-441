@@ -1,5 +1,4 @@
 <div id="view-container">
-  <!-- Left Panel -->
   <div class="left-panel">
     <div class="poem-box">
       <p>
@@ -16,13 +15,20 @@
           They call for mercy,<br />
           their throat retches as they scream for tomorrow,<br />
           until the lights flicker, the wires disconnect,<br />
-          and we realize—<br /><br />
-          The numbers will do just fine, tomorrow.
+          and we realize—
         </em>
       </p>
     </div>
+
+    <div class="controls">
+      <label for="cancer-year"><strong>Year:</strong></label>
+      <input type="range" id="cancer-year" />
+      <span id="cancer-year-value"></span>
+    </div>
   </div>
 
-  <!-- Right Panel -->
-  <svg id="cancer-chart" width="900" height="600"></svg>
+  <div class="right-panel">
+    <!-- This title will be dynamically updated from JS -->
+    <svg id="cancer-chart" width="960" height="600"></svg>
+  </div>
 </div>
