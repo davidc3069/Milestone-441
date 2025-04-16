@@ -1,13 +1,11 @@
 const views = [
-  "instructions",
-  "loading",
-  "choropleth",
+  "choropleth-summary",  // ⬅ first choropleth with full poem, all causes only
   "kidney",
   "accidents",
   "heart-disease",
   "alzheimers",
   "cancer",
-  
+  "choropleth"           // ⬅ second choropleth, interactive
 ];
 
 function renderStarfield() {
@@ -25,12 +23,6 @@ function renderStarfield() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderStarfield();
-
-  // ...your existing routing code
-});
-
 let currentIndex = 0;
 
 function loadRoute(route) {
@@ -45,7 +37,10 @@ function loadRoute(route) {
       if (oldScript) oldScript.remove();
 
       const script = document.createElement("script");
-      script.src = `${route}.js?v=${new Date().getTime()}`;
+
+      // ✅ FIX: Use choropleth.js for both summary and full
+      script.src = route.includes("choropleth") ? `choropleth.js?v=${Date.now()}` : `${route}.js?v=${Date.now()}`;
+
       script.id = "active-script";
       script.defer = true;
       document.body.appendChild(script);
@@ -62,6 +57,7 @@ function navigateView(step) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  renderStarfield();
   loadRoute(views[currentIndex]);
 
   document.addEventListener("keydown", e => {
@@ -80,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
 
 
 
