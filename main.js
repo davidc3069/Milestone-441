@@ -1,10 +1,13 @@
 const views = [
+  "instructions",
+  "loading",
   "choropleth",
   "kidney",
   "accidents",
   "heart-disease",
   "alzheimers",
-  "cancer"
+  "cancer",
+  
 ];
 
 function renderStarfield() {

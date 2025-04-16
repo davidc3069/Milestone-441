@@ -1,10 +1,10 @@
 (() => {
-  console.log("🎯 choropleth.js injected");
+  console.log(" choropleth.js injected");
 
   function renderChoropleth() {
     const mapEl = document.querySelector("#map");
     if (!mapEl) {
-      console.warn("❌ #map not found during renderChoropleth");
+      console.warn(" #map not found during renderChoropleth");
       return;
     }
 
@@ -138,7 +138,7 @@
           updateMap(year, causeSelect.property("value"));
         });
 
-        // ✅ Reveal the controls after transition
+        //  Reveal the controls after transition
         d3.select("#choropleth-controls").classed("hidden", false);
       });
     }
@@ -159,7 +159,7 @@
     d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
       .then(drawGlobe);
 
-    console.log("✅ Choropleth rendered");
+    console.log(" Choropleth rendered");
   }
 
   const tryRender = () => {
