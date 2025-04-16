@@ -9,14 +9,17 @@
     }
 
     const tooltip = d3.select("body").append("div")
-      .attr("class", "tooltip")
-      .style("opacity", 0)
-      .style("position", "absolute")
-      .style("background", "#333")
-      .style("color", "#fff")
-      .style("padding", "8px")
-      .style("border-radius", "4px")
-      .style("pointer-events", "none");
+  .attr("class", "tooltip")
+  .style("position", "absolute")
+  .style("z-index", "9999") // Ensures tooltip appears on top
+  .style("background", "#333")
+  .style("color", "#fff")
+  .style("padding", "8px 12px")
+  .style("border-radius", "4px")
+  .style("font-size", "13px")
+  .style("pointer-events", "none")
+  .style("opacity", 0);
+
 
     const svg = d3.select("#map");
     const width = 960, height = 600;
