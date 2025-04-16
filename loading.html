@@ -1,48 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Welcome</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Loading...</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background: black;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
+    #loading-container {
+      height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       text-align: center;
-      animation: fadeIn 2s ease-in;
+      flex-direction: column;
+      z-index: 1;
     }
 
-    h1 {
-      font-size: 3em;
-      margin-bottom: 0.5em;
+    .typewriter-text {
+      font-size: 2rem;
+      font-family: 'Playfair Display', serif;
+      color: white;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid rgba(255,255,255,0.75);
+      width: 0;
+      animation: typing 4s steps(30, end) forwards, blink 0.8s step-end infinite;
     }
 
-    p {
-      font-size: 1.2em;
-      opacity: 0.8;
+    @keyframes typing {
+      to { width: 100%; }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .continue {
+      margin-top: 30px;
+      font-size: 1rem;
+      color: #ccc;
+      cursor: pointer;
+    }
+
+    .continue:hover {
+      color: white;
     }
   </style>
-  <script>
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 5000);
-  </script>
 </head>
 <body>
-  <h1>Health & Data Explorer</h1>
-  <p>Visualizing health trends across America</p>
+  <canvas id="background-stars"></canvas>
+
+  <div id="loading-container">
+    <div class="typewriter-text">Tracing Death in the Data</div>
+    <div class="continue" onclick="location.href='instructions.html'">Click to continue</div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("background-stars");
+    const ctx = canvas.getContext("2d");
+    let stars = [];
+
+    function initStars() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      stars = Array.from({ length: 150 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.5,
+        dx: (Math.random() - 0.5) * 0.3,
+        dy: (Math.random() - 0.5) * 0.3,
+      }));
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
+        ctx.fill();
+        star.x += star.dx;
+        star.y += star.dy;
+        if (star.x < 0 || star.x > canvas.width) star.dx *= -1;
+        if (star.y < 0 || star.y > canvas.height) star.dy *= -1;
+      });
+      requestAnimationFrame(animateStars);
+    }
+
+    window.addEventListener("resize", initStars);
+    initStars();
+    animateStars();
+  </script>
 </body>
 </html>

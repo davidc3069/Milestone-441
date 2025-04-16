@@ -1,45 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Instructions</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      background: black;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
+    #instructions-container {
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
+      align-items: center;
+      color: white;
+      padding: 40px;
       text-align: center;
+      z-index: 1;
     }
-    .container {
-      max-width: 600px;
+
+    .instructions-box {
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
     }
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 18px;
-      cursor: pointer;
-      border: none;
-      background-color: white;
+
+    .begin-button {
+      margin-top: 30px;
+      background: white;
       color: black;
-      transition: background-color 0.3s ease;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
-    button:hover {
-      background-color: #ccc;
+
+    .begin-button:hover {
+      background: #ddd;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>How to Navigate</h1>
-    <p>Explore different datasets on disease impacts across the U.S. through interactive visualizations.</p>
-    <p>Click each category on the homepage to dive into maps and data stories.</p>
-    <button onclick="location.href='loading.html'">Start</button>
+  <canvas id="background-stars"></canvas>
+
+  <div id="instructions-container">
+    <div class="instructions-box">
+      <p><strong>Welcome to the Data Death Atlas</strong></p>
+      <p>In this interactive experience, you’ll explore U.S. mortality data through poetry, maps, and graphs.</p>
+      <p>Use the year sliders and dropdowns to filter by state or cause of death. Each visual is paired with a poem — let the words guide your attention to the lives behind the data.</p>
+      <p>Click "Begin" to start your journey.</p>
+    </div>
+    <button class="begin-button" onclick="location.href='heart-disease.html'">Begin</button>
   </div>
+
+  <script>
+    const canvas = document.getElementById("background-stars");
+    const ctx = canvas.getContext("2d");
+    let stars = [];
+
+    function initStars() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      stars = Array.from({ length: 150 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.5,
+        dx: (Math.random() - 0.5) * 0.3,
+        dy: (Math.random() - 0.5) * 0.3,
+      }));
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
+        ctx.fill();
+        star.x += star.dx;
+        star.y += star.dy;
+        if (star.x < 0 || star.x > canvas.width) star.dx *= -1;
+        if (star.y < 0 || star.y > canvas.height) star.dy *= -1;
+      });
+      requestAnimationFrame(animateStars);
+    }
+
+    window.addEventListener("resize", initStars);
+    initStars();
+    animateStars();
+  </script>
 </body>
 </html>

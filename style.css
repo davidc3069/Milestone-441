@@ -9,7 +9,7 @@ body {
   font-size: 18px;
   line-height: 1.7;
   color: white;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
 }
 
@@ -71,7 +71,7 @@ body {
   align-items: flex-start;
 }
 
-/* 5. Left Panel: Poems & Controls */
+/* 5. Left Panel */
 .left-panel {
   color: white;
   font-size: 1.1rem;
@@ -84,11 +84,10 @@ body {
   margin-bottom: 30px;
   font-style: italic;
   font-size: 1.3rem;
-
 }
+
 .left-panel .poem-box-heart {
   font-size: 1.0rem;
-  
 } 
 
 #choropleth-controls,
@@ -122,7 +121,7 @@ body {
   font-weight: bold;
 }
 
-/* 6. Right Panel: Visualization */
+/* 6. Right Panel */
 .right-panel {
   width: 100%;
 }
@@ -152,12 +151,12 @@ body {
   transition: opacity 0.3s ease;
 }
 
-/* 8. Visibility control */
+/* 8. Hidden class */
 .hidden {
   display: none;
 }
 
-/* 9. Simple fade-in animation */
+/* 9. Fade in animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -174,7 +173,7 @@ body {
   stroke-width: 0.5;
 }
 
-/* 11. Visualization Title */
+/* 11. Visualization title */
 .vis-title {
   font-size: 22px;
   font-weight: bold;
@@ -192,31 +191,8 @@ body {
   font-size: 14px;
 }
 
-
-
-
-/*New heart disease*/
-.poem-box-heart {
-  max-height: 80vh;
-  overflow-y: auto;
-  padding-right: 10px;
-  font-style: italic;
-}
-
-.poem-box-heart em {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  display: inline-block;
-  white-space: pre-wrap;
-}
-.poem-box-heart::-webkit-scrollbar {
-  width: 6px;
-}
-
-.poem-box-heart::-webkit-scrollbar-thumb {
-  background: #444;
-  border-radius: 3px;
-}
+/* Scrollable poem boxes */
+.poem-box-heart,
 .poem-box-alzheimers {
   max-height: 80vh;
   overflow-y: auto;
@@ -224,11 +200,146 @@ body {
   font-style: italic;
 }
 
+.poem-box-heart em,
 .poem-box-alzheimers em {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   display: inline-block;
   white-space: pre-wrap;
+}
+
+.poem-box-heart::-webkit-scrollbar,
+.poem-box-alzheimers::-webkit-scrollbar {
+  width: 6px;
+}
+
+.poem-box-heart::-webkit-scrollbar-thumb,
+.poem-box-alzheimers::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+#landing-container {
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  box-sizing: border-box;
+  font-family: 'Playfair Display', serif;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.landing-box {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+.landing-box h1 {
+  font-size: 3.2rem;
+  margin-bottom: 1rem;
+  color: #fb6a4a;
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  font-style: italic;
+  margin-bottom: 1.8rem;
+  color: #ccc;
+}
+
+.dataset-info {
+  font-size: 1.05rem;
+  color: #eee;
+  margin-bottom: 2rem;
+}
+
+.dataset-info a {
+  color: #fb6a4a;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.instructions {
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+  color: #bbb;
+}
+
+.enter-btn {
+  background-color: #fb6a4a;
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Playfair Display', serif;
+  transition: background 0.3s ease;
+}
+
+.enter-btn:hover {
+  background-color: #d44a3a;
+}
+
+
+.poem-box,
+.poem-box-alzheimers,
+.poem-box-heart {
+  margin-bottom: 30px;
+  font-style: italic;
+  font-size: 1.3rem;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.poem-box em,
+.poem-box-alzheimers em,
+.poem-box-heart em {
+  display: block;
+  color: white;
+  font-size: 1.3rem;
+  font-family: 'Playfair Display', serif;
+  line-height: 1em;
+  white-space: nowrap;
+  text-align: left;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.poem-box-heart::-webkit-scrollbar,
+.poem-box-alzheimers::-webkit-scrollbar {
+  width: 6px;
+}
+
+.poem-box-heart::-webkit-scrollbar-thumb,
+.poem-box-alzheimers::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+#choropleth-controls,
+.controls,
+#alz-controls {
+  margin-top: 20px;
+  font-size: 1.05rem;
+  font-family: 'Inter', sans-serif;
+  color: white;
+}
+
+#choropleth-controls label,
+.controls label {
+  margin-right: 8px;
 }
 
 
@@ -238,6 +349,3 @@ body {
 
 
 
-  
-  
-    

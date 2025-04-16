@@ -1,20 +1,30 @@
 <div id="view-container">
-  <!-- Left Panel -->
   <div class="left-panel">
     <div class="poem-box-alzheimers">
       <p>
         <em>
+          She stares past the photo, past the wall.<br />
+          The names drift like leaves—<br />
+          familiar, then forgotten.<br />
+          A whisper echoes: daughter, husband, sister...<br />
+          She smiles at a stranger wearing her son's face.<br />
+          Time slides off her like water on glass.<br/>
+          The past is a fog. The future, a blank page.<br />
+          What remains is the now—<br />
+          fleeting, fragile, fading.
         </em>
       </p>
     </div>
 
-    <div id="choropleth-controls">
-      <label for="alz-year">Year:</label>
-      <input type="range" id="alz-year" min="1999" max="2019" value="1999" />
-      <span id="alz-year-value">1999</span>
+    <div class="controls">
+      <label for="alz-year"><strong>Year:</strong></label>
+      <input type="range" id="alz-year" />
+      <span id="alz-year-value"></span>
     </div>
   </div>
 
-  <!-- Right Panel -->
-  <div id="network-container" class="right-panel"></div>
+  <div class="right-panel">
+    <!-- Title is dynamically generated -->
+    <svg id="alzheimers-chart" width="960" height="600"></svg>
+  </div>
 </div>
