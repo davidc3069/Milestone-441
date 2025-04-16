@@ -162,6 +162,16 @@ input[type="range"] {
   stroke-width: 0.5;
 }
 
+.vis-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif; /* Matches poetic + Accidents style */
+}
+
+
 
 
 
