@@ -11,6 +11,45 @@ d3.csv("data.csv").then(function(data) {
             .text(state);
     });
 
+
+            // Typewriter effect for heart disease poem
+    const heartPoemLines = [
+        "Tonight, a father grips his chest in the dark.",
+        "The walls press inward, the air thick with echoes.",
+        "His body, a traitor, turns against him—",
+        "his veins choke, his heart stutters, his breath folds.",
+        "Death slithers through his lineage like an inheritance.",
+        "It has waited patiently.",
+        "He has outrun it for years. No longer.",
+        "The ambulance is a siren in the distance,",
+        "a promise that will not be kept.",
+        "His pain splinters through him like fractured glass.",
+        "Tomorrow, he won’t feel a thing."
+    ];
+
+    const heartPoemEl = d3.select(".poem-box-heart em");
+    heartPoemEl.html("");
+
+    let heartLine = 0;
+    let heartChar = 0;
+
+    function typeHeartPoem() {
+        if (heartLine >= heartPoemLines.length) return;
+
+        const current = heartPoemLines[heartLine];
+        if (heartChar < current.length) {
+            heartPoemEl.html(heartPoemEl.html() + current.charAt(heartChar));
+            heartChar++;
+            setTimeout(typeHeartPoem, 30);
+        } else {
+            heartPoemEl.html(heartPoemEl.html() + "<br>");
+            heartLine++;
+            heartChar = 0;
+            setTimeout(typeHeartPoem, 300);
+        }
+    }
+    typeHeartPoem();
+
     function updateChart(selectedState) {
         let filteredData = data.filter(d => d["Cause Name"] === exactCauseName);
 
@@ -59,12 +98,23 @@ d3.csv("data.csv").then(function(data) {
             .y(d => yScale(d.Deaths))
             .curve(d3.curveMonotoneX);
 
-        svg.append("path")
+            const path = svg.append("path")
             .datum(filteredData)
             .attr("fill", "none")
             .attr("stroke", "#d73027")
             .attr("stroke-width", 2.5)
             .attr("d", line);
+        
+        // Get total path length
+        const totalLength = path.node().getTotalLength();
+        path
+          .attr("stroke-dasharray", totalLength + " " + totalLength)
+          .attr("stroke-dashoffset", totalLength)
+          .transition()
+          .duration(2000)
+          .ease(d3.easeLinear)
+          .attr("stroke-dashoffset", 0);
+        
 
         svg.append("g")
             .attr("transform", `translate(0,${height})`)
@@ -72,6 +122,26 @@ d3.csv("data.csv").then(function(data) {
 
         svg.append("g")
             .call(d3.axisLeft(yScale));
+
+            // X-Axis Label
+        svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("x", width / 2)
+        .attr("y", height + 40)
+        .style("font-size", "12px")
+        .color("white")
+        .text("Year");
+
+        // Y-Axis Label
+        svg.append("text")
+        .attr("text-anchor", "middle")
+        .attr("transform", `rotate(-90)`)
+        .attr("x", -height / 2)
+        .attr("y", -45)
+        .color("white")
+        .style("font-size", "12px")
+        .text("Deaths");
+
 
         svg.append("text")
             .attr("x", width / 2)
@@ -82,6 +152,7 @@ d3.csv("data.csv").then(function(data) {
     }
 
     // Initial chart render
+    typeHeartPoem(); 
     updateChart("All");
 
     // Dropdown event listener
