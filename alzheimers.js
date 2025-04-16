@@ -80,7 +80,8 @@ d3.csv("data.csv").then(function (data) {
     const svg = d3.select("#network-container")
       .append("svg")
       .attr("width", width)
-      .attr("height", height);
+      .attr("height", height)
+      .attr("viewBox", `0 0 ${width} ${height}`);
 
     const simulation = d3.forceSimulation(nodes)
       .force("link", d3.forceLink(links).id(d => d.id).distance(250))
