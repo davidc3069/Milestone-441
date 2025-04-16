@@ -40,20 +40,17 @@
 
     const color = d3.scaleOrdinal(d3.schemeTableau10).domain(topStates);
 
-    // X Axis
     chart.append("g")
       .attr("transform", `translate(0,${height})`)
       .call(d3.axisBottom(x).tickFormat(d3.format("d")))
       .selectAll("text")
       .style("fill", "white");
 
-    // Y Axis
     chart.append("g")
       .call(d3.axisLeft(y).tickFormat(d3.format(".1f")))
       .selectAll("text")
       .style("fill", "white");
 
-    // X Axis Label
     svg.append("text")
       .attr("x", margin.left + width / 2)
       .attr("y", height + margin.top + 45)
@@ -62,7 +59,6 @@
       .style("font-size", "14px")
       .text("Year");
 
-    // Y Axis Label
     svg.append("text")
       .attr("transform", "rotate(-90)")
       .attr("x", -margin.top - height / 2)
@@ -72,7 +68,6 @@
       .style("font-size", "14px")
       .text("Age-adjusted Death Rate (per 100,000)");
 
-    // Chart Title
     svg.append("text")
       .attr("x", margin.left + width / 2)
       .attr("y", 30)
@@ -82,7 +77,6 @@
       .style("fill", "white")
       .text("Top 10 States by Age-Adjusted Accidental Death Rate");
 
-    // Clarifying Footnote
     svg.append("text")
       .attr("x", margin.left + width / 2)
       .attr("y", height + margin.top + 70)
@@ -91,19 +85,17 @@
       .style("font-size", "12px")
       .text("Note: Y-axis shows age-adjusted deaths per 100,000 people.");
 
-    // Plot Dots (with jitter, stroke, opacity)
     chart.selectAll("circle")
       .data(topData)
       .enter().append("circle")
       .attr("cx", d => x(d.Year))
-      .attr("cy", d => y(d.Rate) + (Math.random() * 4 - 2)) // slight vertical jitter
+      .attr("cy", d => y(d.Rate) + (Math.random() * 4 - 2))
       .attr("r", 8)
       .attr("fill", d => color(d.State))
       .attr("stroke", "#000")
       .attr("stroke-width", 0.8)
       .attr("opacity", 0.7);
 
-    // Legend
     const legend = svg.selectAll(".legend")
       .data(topStates)
       .enter().append("g")

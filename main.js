@@ -1,11 +1,12 @@
 const views = [
-  "choropleth-summary",  // ⬅ first choropleth with full poem, all causes only
+  "landing",
+  "choropleth-summary", 
   "kidney",
   "accidents",
   "heart-disease",
   "alzheimers",
   "cancer",
-  "choropleth"           // ⬅ second choropleth, interactive
+  "choropleth"     
 ];
 
 function renderStarfield() {
@@ -76,8 +77,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-
-
-
-

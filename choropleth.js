@@ -125,11 +125,9 @@
             updateMap(selectedYear);
           });
 
-          // 🎯 Reveal controls AFTER map loads
           d3.select("#choropleth-controls").classed("hidden", false);
 
         } else {
-          // full mode
           const yearSlider = d3.select("#choropleth-year");
           const yearValue = d3.select("#choropleth-year-value");
           const causeSelect = d3.select("#causeSelect");
@@ -188,7 +186,6 @@
             updateMap(yearSlider.property("value"), causeSelect.property("value"));
           });
 
-          // 🎯 Reveal controls after map is ready
           d3.select("#choropleth-controls").classed("hidden", false);
         }
       });
