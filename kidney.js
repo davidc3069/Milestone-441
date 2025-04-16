@@ -92,7 +92,6 @@
           tooltip.transition().duration(300).style("opacity", 0);
         });
 
-      // Title
       svg.append("text")
         .attr("x", margin.left + width / 2)
         .attr("y", 30)
@@ -102,7 +101,6 @@
         .style("fill", "white")
         .text(`Top 15 States by Kidney Disease (${metric})`);
 
-      // X Axis Label
       svg.append("text")
         .attr("x", margin.left + width / 2)
         .attr("y", height + margin.top + 100)
@@ -111,7 +109,6 @@
         .style("font-size", "14px")
         .text("State");
 
-      // Y Axis Label
       svg.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -margin.top - height / 2)

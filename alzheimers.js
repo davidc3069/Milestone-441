@@ -1,7 +1,6 @@
 d3.csv("data.csv").then(function (data) {
   const exactCauseName = "Alzheimer's disease";
 
-  // Typewriter poem
   const alzPoemLines = [
     "She stares past the photo, past the wall.",
     "The names drift like leaves—",

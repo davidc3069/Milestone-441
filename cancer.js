@@ -153,8 +153,7 @@ d3.csv("data.csv").then(data => {
         .style("fill", "white")
         .text(`Cancer Deaths by State – ${year}`);
     }
-  
-    // Setup slider
+
     const slider = d3.select("#cancer-year");
     const label = d3.select("#cancer-year-value");
   

@@ -192,10 +192,6 @@ body {
   font-size: 14px;
 }
 
-
-
-
-/*New heart disease*/
 .poem-box-heart {
   max-height: 80vh;
   overflow-y: auto;
@@ -230,14 +226,4 @@ body {
   display: inline-block;
   white-space: pre-wrap;
 }
-
-
-
-
-
-
-
-
-  
-  
-    
+   
