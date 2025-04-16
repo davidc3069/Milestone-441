@@ -1,4 +1,5 @@
 const views = [
+  "landing",
   "choropleth-summary", 
   "kidney",
   "accidents",
