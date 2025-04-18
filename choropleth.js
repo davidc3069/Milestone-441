@@ -207,7 +207,7 @@
     d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
       .then(drawGlobe);
 
-    console.log("✅ Choropleth rendered, mode:", mode);
+    console.log(" Choropleth rendered, mode:", mode);
   }
 
   const tryRender = () => {
